@@ -45,7 +45,7 @@ void ABaseCharacter::AquireAbility(TSubclassOf<UGameplayAbility> Ability)
 	{
 		//添加一个新能力
 		AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(Ability));
-		//初始化角色能力
+		//初始化角色能力（当前为单人游戏写法）
 		AbilitySystemComponent->InitAbilityActorInfo(this,this);
 	}
 }
