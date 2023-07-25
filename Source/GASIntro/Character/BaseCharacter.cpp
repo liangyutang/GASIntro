@@ -3,12 +3,14 @@
 
 #include "BaseCharacter.h"
 
+#include "AbilitySystemComponent.h"
 // Sets default values
 ABaseCharacter::ABaseCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	
+
+	AbilitySystemComponent=CreateDefaultSubobject<UAbilitySystemComponent>("AbilitySystemComponent");
 }
 
 // Called when the game starts or when spawned
@@ -30,5 +32,21 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+UAbilitySystemComponent* ABaseCharacter::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+
+void ABaseCharacter::AquireAbility(TSubclassOf<UGameplayAbility> Ability)
+{
+	if (AbilitySystemComponent && Ability)
+	{
+		//添加一个新能力
+		AbilitySystemComponent->GiveAbility(FGameplayAbilitySpec(Ability));
+		//初始化角色能力
+		AbilitySystemComponent->InitAbilityActorInfo(this,this);
+	}
 }
 
