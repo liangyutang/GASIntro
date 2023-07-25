@@ -35,7 +35,6 @@ void ABasePlayerController::Look(const FInputActionValue& Value)
 	{
 		MyPawn->AddControllerYawInput(-LookVector.X);
 		
-		/*UE_LOG(LogTemp,Error,TEXT("%f"),GetDeprecatedInputPitchScale());*/
 		//视角度数限定
 		const float ViewAngle=LookVector.Y*GetDeprecatedInputPitchScale()+GetControlRotation().Pitch;
 		/*if ((ViewAngle>300 && ViewAngle<=999) || (ViewAngle>=-999 && ViewAngle<=45))*/
