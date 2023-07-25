@@ -7,6 +7,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "Kismet/GameplayStatics.h"
+#include "InputModifiers.h"
 
 
 void ABasePlayerController::BeginPlay()
@@ -33,7 +34,15 @@ void ABasePlayerController::Look(const FInputActionValue& Value)
 	if (MyPawn)
 	{
 		MyPawn->AddControllerYawInput(-LookVector.X);
-		MyPawn->AddControllerPitchInput(LookVector.Y);
+		
+		/*UE_LOG(LogTemp,Error,TEXT("%f"),GetDeprecatedInputPitchScale());*/
+		//视角度数限定
+		const float ViewAngle=LookVector.Y*GetDeprecatedInputPitchScale()+GetControlRotation().Pitch;
+		/*if ((ViewAngle>300 && ViewAngle<=999) || (ViewAngle>=-999 && ViewAngle<=45))*/
+		if (!(ViewAngle>45 && ViewAngle<300))
+		{
+			MyPawn->AddControllerPitchInput(LookVector.Y);
+		}
 	}
 }
 
