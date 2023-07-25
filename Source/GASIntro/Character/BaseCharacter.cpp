@@ -4,6 +4,7 @@
 #include "BaseCharacter.h"
 
 #include "AbilitySystemComponent.h"
+#include "GASIntro/Gameplay/BaseAttributeSet.h"
 #include "GASIntro/Gameplay/BaseGameplayAbility.h"
 // Sets default values
 ABaseCharacter::ABaseCharacter()
@@ -12,6 +13,8 @@ ABaseCharacter::ABaseCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 
 	AbilitySystemComponent=CreateDefaultSubobject<UAbilitySystemComponent>("AbilitySystemComponent");
+
+	AttributeSet=CreateDefaultSubobject<UBaseAttributeSet>("AttributeSet");
 }
 
 // Called when the game starts or when spawned

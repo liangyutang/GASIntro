@@ -7,6 +7,7 @@
 #include "GameFramework/Character.h"
 #include "BaseCharacter.generated.h"
 
+class UBaseAttributeSet;
 class UBaseGameplayAbility;
 class UGameplayAbility;
 
@@ -22,7 +23,9 @@ public:
 protected:
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite,Category="BaseCharacter")
 	UAbilitySystemComponent* AbilitySystemComponent;
-	
+
+	UPROPERTY(VisibleAnywhere,BlueprintReadWrite,Category="BaseCharacter")
+	UBaseAttributeSet* AttributeSet;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
