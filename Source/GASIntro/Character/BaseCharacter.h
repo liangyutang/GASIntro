@@ -7,6 +7,7 @@
 #include "GameFramework/Character.h"
 #include "BaseCharacter.generated.h"
 
+class UBaseGameplayAbility;
 class UGameplayAbility;
 
 UCLASS()
@@ -35,5 +36,6 @@ public:
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
-	void AquireAbility(TSubclassOf<UGameplayAbility> Ability);
+	UFUNCTION(BlueprintCallable,Category="BaseCharacter")
+	void AquireAbility(TSubclassOf<UBaseGameplayAbility> Ability);
 };
